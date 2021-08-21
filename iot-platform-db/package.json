@@ -1,0 +1,23 @@
+{
+  "name": "iot-platform-db",
+  "version": "1.0.0",
+  "description": "A simple IoT platform DB Module",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlos-Angel/iot-platform.git"
+  },
+  "keywords": [],
+  "author": "Carlos Alberto Angel Angel <c.a.a.a.503@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Carlos-Angel/iot-platform/issues"
+  },
+  "homepage": "https://github.com/Carlos-Angel/iot-platform/#readme",
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
