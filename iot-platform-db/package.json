@@ -4,6 +4,7 @@
   "description": "A simple IoT platform DB Module",
   "main": "index.js",
   "scripts": {
+    "setup": "DEBUG=iot-platform:* node setup.js",
     "lint": "standard --fix"
   },
   "repository": {
@@ -21,6 +22,7 @@
     "standard": "^16.0.3"
   },
   "dependencies": {
+    "debug": "^4.3.2",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.6.5"
