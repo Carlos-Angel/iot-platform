@@ -23,11 +23,11 @@ module.exports = function setupAgent (AgentModel) {
     return AgentModel.findById(id)
   }
 
-  function findAll() {
+  function findAll () {
     return AgentModel.findAll()
   }
 
-  function findByUuid(uuid) {
+  function findByUuid (uuid) {
     return AgentModel.findOne({
       where: {
         uuid
@@ -35,15 +35,15 @@ module.exports = function setupAgent (AgentModel) {
     })
   }
 
-  function findConnected() {
+  function findConnected () {
     return AgentModel.findAll({
-      where : {
+      where: {
         connected: true
       }
     })
   }
 
-  function findByUsername(username) {
+  function findByUsername (username) {
     return AgentModel.findAll({
       where: {
         username,
