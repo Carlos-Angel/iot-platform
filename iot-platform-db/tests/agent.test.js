@@ -40,7 +40,7 @@ test.beforeEach(async () => {
   AgentStub.update = sandbox.stub()
   AgentStub.update.withArgs(single, uuidArgs).returns(Promise.resolve(single))
 
-  // Model findById stub
+  // Model findById Stub
   AgentStub.findById = sandbox.stub()
   AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.findById(id)))
 
@@ -67,7 +67,7 @@ test.serial('Setup', t => {
   t.true(MetricStub.belongsTo.calledWith(AgentStub), 'Argument should to be the AgentModel')
 })
 
-test.serial('Agent#findByIf', async t => {
+test.serial('Agent#findById', async t => {
   const agent = await db.Agent.findById(id)
 
   t.true(AgentStub.findById.called, 'findById should be called on model')
