@@ -29,6 +29,7 @@
     "debug": "^3.2.7",
     "jsonschema": "^1.2.6",
     "mosca": "^2.8.3",
+    "iot-platform-db": "file:../iot-platform-db",
     "redis": "^3.1.2"
   }
 }
