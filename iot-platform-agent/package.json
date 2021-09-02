@@ -1,0 +1,22 @@
+{
+  "name": "iot-platform-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple IoT platform | Agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlos-Angel/iot-platform.git"
+  },
+  "keywords": [],
+  "author": "Carlos Alberto Angel Angel <c.a.a.a.503@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Carlos-Angel/iot-platform/issues"
+  },
+  "homepage": "https://github.com/Carlos-Angel/iot-platform/#readme"
+
+}
