@@ -1,11 +1,14 @@
 'use strict'
-
 const test = require('ava')
+const util = require('util')
 const request = require('supertest')
 const sinon = require('sinon')
 const proxyquire = require('proxyquire')
 const agentFixtures = require('./fixtures/agent')
 const metricFixtures = require('./fixtures/metric')
+const auth = require('../auth')
+const sign = util.promisify(auth.sign)
+const config = require('../config')
 
 let sandbox = null
 let server = null
@@ -14,6 +17,7 @@ let AgentStub = {}
 let MetricStub = {}
 const uid = agentFixtures.single.uuid;
 const type = 'Pink';
+let token = null
 
 test.beforeEach(async () => {
   sandbox = sinon.createSandbox()
@@ -36,6 +40,8 @@ test.beforeEach(async () => {
   MetricStub.findByTypeAgentUuid = sandbox.stub()
   MetricStub.findByTypeAgentUuid.withArgs(type, uid).returns(Promise.resolve(metricFixtures.findByTypeAgentUuid(type, uid)))
 
+  token = await sign({admin: true, username:'admin'}, config.auth.secret)
+
   const api = proxyquire('../api', {
     'iot-platform-db': dbStub
   })
@@ -52,6 +58,7 @@ test.afterEach(() => {
 test.serial.cb('/api/agents', t => {
   request(server)
     .get('/api/agents')
+    .set('Authorization',`Bearer ${token}`)
     .expect(200)
     .expect('Content-type', /json/)
     .end((err, res) => {
