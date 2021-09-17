@@ -3,6 +3,8 @@ const auth = require('jsonwebtoken');
 const payload = {
   username: 'admin',
   admin: true,
+  permissions: [
+  ]
 };
 
 function callback(err, token){

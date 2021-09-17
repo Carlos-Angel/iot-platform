@@ -4,6 +4,7 @@ const debug = require('debug')('iot-platform:api:routes')
 const express = require('express')
 const db = require('iot-platform-db')
 const auth = require('express-jwt')
+const guard = require('express-jwt-permissions')()
 const config = require('./config')
 
 const api = express.Router()
@@ -64,7 +65,12 @@ api.get('/agent/:uid', async (req, res, next) => {
   res.send(agent)
 })
 
-api.get('/metrics/:uid', async (req, res, next) => {
+api.get('/metrics/:uid',
+  [
+    auth({ secret: config.auth.secret, algorithms: config.auth.algorithms }),
+    guard.check(['metrics:read'])
+  ],
+  async (req, res, next) => {
   const { uid } = req.params
   debug(`request to /metrics/${uid}`)
   let metrics = []
