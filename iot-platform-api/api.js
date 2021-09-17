@@ -3,6 +3,7 @@
 const debug = require('debug')('iot-platform:api:routes')
 const express = require('express')
 const db = require('iot-platform-db')
+const auth = require('express-jwt')
 const config = require('./config')
 
 const api = express.Router()
@@ -23,11 +24,22 @@ api.use('*', async (req, res, next) => {
   next()
 })
 
-api.get('/agents', async (req, res, next) => {
+api.get('/agents',auth({ secret: config.auth.secret, algorithms: config.auth.algorithms }), async (req, res, next) => {
   debug('A request has come to /agents')
   let agents = []
+
+  const {user} = req
+
+  if(!user || !user.username){
+    return next(new Error('Not authorized'))
+  }
+
   try {
-    agents = await Agent.findConnected()
+    if(user.admin){
+      agents = await Agent.findConnected()
+    }else {
+      agents = await Agent.findByUsername(user.username)
+    }
   } catch (err) {
     return next(err)
   }
